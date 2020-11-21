@@ -13,7 +13,7 @@ public class AuchanParseStoreController {
 
   private final AuchanParseStoreCategoryService service;
 
-  @PostMapping("/parse/auchan/categories")
+  @PostMapping("/parse/auchan/categories/")
   public ResponseEntity<List<String>> parseAuchanCategories(){
     List<String> result = service.parseCategories();
     return ResponseEntity.ok().body(result);
