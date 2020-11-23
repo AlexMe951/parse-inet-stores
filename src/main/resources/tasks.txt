@@ -11,4 +11,7 @@
 	8. В мастер ничего не пушить (!), только через пулл-реквесты
 
 Спринг MVC
-Сделать дополнительный эндпойнт, чтобы можно было указывать в пути какую инит-страницу. Например обращение к контроллеру через /parse/auchan/categories/ptica-myaso  запускало в сервисе парсинг на странице https://www.auchan.ru/catalog/ptica-myaso/ , обращение через /parse/auchan/categories/hlebnaya-vypechka запускало парсинг на странице https://www.auchan.ru/catalog/hlebnaya-vypechka и т.д. Понятно, все это через один эндпойнт (при помощи @PathVariable)
+Сделать дополнительный эндпойнт, чтобы можно было указывать в пути какую инит-страницу.
+ Например обращение к контроллеру через /parse/auchan/categories/ptica-myaso  запускало в сервисе парсинг
+ на странице https://www.auchan.ru/catalog/ptica-myaso/ , обращение через /parse/auchan/categories/hlebnaya-vypechka
+ запускало парсинг на странице https://www.auchan.ru/catalog/hlebnaya-vypechka и т.д. Понятно, все это через один эндпойнт (при помощи @PathVariable)
