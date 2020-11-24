@@ -1,2 +1,7 @@
+#######
 POST http://localhost:8080/parse/auchan/categories/
+Content-Type: text/html
+
+#######
+POST http://localhost:8080/parse/auchan/categories/sport-i-otdyh
 Content-Type: text/html
