@@ -15,13 +15,13 @@ public class AuchanParseStoreController {
 
   private final AuchanParseStoreCategoryService service;
 
-  @GetMapping("/parse/auchan/categories/")
+  @PostMapping("/parse/auchan/categories/")
   public ResponseEntity<List<String>> parseAuchanCategories(){
     List<String> result = service.parseCategories();
     return ResponseEntity.ok().body(result);
   }
 
-  @GetMapping("/parse/auchan/categories/{subcategory}")
+  @PostMapping("/parse/auchan/categories/{subcategory}")
   public ResponseEntity<List<String>> parseAuchanCategories(@PathVariable("subcategory") String subcategory){
     List<String> result = service.parseCategories(subcategory);
     return ResponseEntity.ok().body(result);
