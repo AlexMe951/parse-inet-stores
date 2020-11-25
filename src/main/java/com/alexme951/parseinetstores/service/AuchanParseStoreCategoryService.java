@@ -87,7 +87,13 @@ public class AuchanParseStoreCategoryService {
   }
 
   private void saveLinks(@NonNull List<String> catalogLinkUrls) {
+    log.debug("Started saving links");
     Set<CatalogLink> catalogLinks = mapToCatalogLinks(catalogLinkUrls);
-    repository.saveAll(catalogLinks);
+    Iterable<CatalogLink> savedLinks = repository.saveAll(catalogLinks);
+    log.debug(savedLinks.toString());
+  }
+
+  public @NonNull Iterable<CatalogLink> getAllSavedCatalogLinks() {
+    return repository.findAll();
   }
 }

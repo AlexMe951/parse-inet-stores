@@ -1,7 +1,10 @@
 #######
-POST http://localhost:8080/parse/auchan/categories/
+POST http://localhost:8080/parse/auchan/cataloglinks/
 Content-Type: text/html
-
 #######
-POST http://localhost:8080/parse/auchan/categories/sport-i-otdyh
+
+POST http://localhost:8080/parse/auchan/cataloglinks/sport-i-otdyh/
 Content-Type: text/html
+#######
+
+GET http://localhost:8080/parse/auchan/cataloglinks
