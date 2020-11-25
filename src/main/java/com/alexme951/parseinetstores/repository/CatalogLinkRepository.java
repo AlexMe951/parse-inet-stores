@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CatalogLinkRepository extends CrudRepository<CatalogLink, Long> {
-
 }

@@ -25,8 +25,8 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Service
 @Slf4j
+@Service
 public class AuchanParseStoreCategoryService {
 
   private final CatalogLinkRepository repository;
@@ -89,8 +89,8 @@ public class AuchanParseStoreCategoryService {
   private void saveLinks(@NonNull List<String> catalogLinkUrls) {
     log.debug("Started saving links");
     Set<CatalogLink> catalogLinks = mapToCatalogLinks(catalogLinkUrls);
-    Iterable<CatalogLink> savedLinks = repository.saveAll(catalogLinks);
-    log.debug(savedLinks.toString());
+    repository.saveAll(catalogLinks);
+    log.debug("{} links was saved into DB", catalogLinks.size());
   }
 
   public @NonNull Iterable<CatalogLink> getAllSavedCatalogLinks() {
