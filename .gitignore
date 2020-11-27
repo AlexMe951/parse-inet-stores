@@ -36,3 +36,4 @@ build/
 
 ### Local properties ###
 application-local.properties
+rest-client.env.json
