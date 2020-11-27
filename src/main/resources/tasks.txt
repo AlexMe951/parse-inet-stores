@@ -33,3 +33,4 @@
   этот самый новый эндпойнт "GET parse/auchan/cataloglinks/{linkUrl}";
  8** сделать еще таблицу, связанную с CatalogLink, разметить
  9 test1
+ 10 test2
