@@ -33,3 +33,6 @@ build/
 .vscode/
 /.mvn/
 /out/
+
+### Local properties ###
+application-local.properties
