@@ -11,7 +11,9 @@ import com.alexme951.parseinetstores.repository.CatalogLinkRepository;
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
 import lombok.NonNull;
@@ -92,18 +94,19 @@ public class AuchanParseStoreCategoryService {
     log.debug("{} links was saved into DB", catalogLinks.size());
   }
 
-  public @NonNull Iterable<CatalogLink> getAllSavedCatalogLinks() {
+  public @NonNull
+  Iterable<CatalogLink> getAllSavedCatalogLinks() {
     return repository.findAll();
   }
 
-  public @NonNull List<CatalogLink> findAllByLinkUrl(String linkUrl) {
-    log.info("Ищем строку "+linkUrl);
+  public @NonNull
+  List<CatalogLink> findAllByLinkUrl(@NonNull String linkUrl) {
     List<CatalogLink> result = new ArrayList<CatalogLink>();
     Iterable<CatalogLink> catalogLinks = getAllSavedCatalogLinks();
-    for(CatalogLink catalogLink : catalogLinks) {
-       if (catalogLink.getLinkUrl().toLowerCase().contains(linkUrl.toLowerCase())) {
-         result.add(catalogLink);
-       }
+    for (CatalogLink catalogLink : catalogLinks) {
+      if (catalogLink.getLinkUrl().toLowerCase().contains(linkUrl.toLowerCase())) {
+        result.add(catalogLink);
+      }
     }
     return result;
   }

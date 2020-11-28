@@ -2,9 +2,7 @@ package com.alexme951.parseinetstores.controller;
 
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
 import com.alexme951.parseinetstores.service.AuchanParseStoreCategoryService;
-
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
