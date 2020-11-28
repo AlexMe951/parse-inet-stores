@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class CatalogLink {
 
   @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private LocalDateTime parsingTime;
   private String linkUrl;
