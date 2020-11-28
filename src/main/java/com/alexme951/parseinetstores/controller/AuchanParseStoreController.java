@@ -34,4 +34,11 @@ public class AuchanParseStoreController {
     Iterable<CatalogLink> result = service.getAllSavedCatalogLinks();
     return ResponseEntity.ok().body(result);
   }
+
+  @GetMapping("parse/auchan/cataloglinks/{linkUrl}")
+  public ResponseEntity<Iterable<CatalogLink>> getAllByLinkUrl(@PathVariable("linkUrl") String linkUrl){
+    List<CatalogLink> result = service.findAllByLinkUrl(linkUrl);
+    return ResponseEntity.ok().body(result);
+  }
+
 }
