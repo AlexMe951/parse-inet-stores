@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.validation.constraints.NotNull;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +30,6 @@ public class AuchanParseStoreCategoryService {
   private final CatalogLinkRepository repository;
 
   @SneakyThrows
-  @NonNull
   public List<String> parseAllCatalogLinks() {
     Elements allElements = parsePage(AUCHAN_DEFAULT_CATEGORY_URL);
     Elements catalogLinkElements = allElements.select(CATALOG_LINKS_SELECT_QUERY);
@@ -42,8 +39,7 @@ public class AuchanParseStoreCategoryService {
   }
 
   @SneakyThrows
-  @NonNull
-  public List<String> parseAllCategoryCatalogLinks(@NonNull String category) {
+  public List<String> parseAllCategoryCatalogLinks(String category) {
     String urlForParsing = formUrlForParsing(category);
     Elements allElements = parsePage(urlForParsing);
     String selectQuery = createCategorySelectQuery(category);
@@ -53,47 +49,45 @@ public class AuchanParseStoreCategoryService {
     return catalogLinkUrls;
   }
 
-  @NotNull
-  private String formUrlForParsing(@NonNull String category) {
+  private String formUrlForParsing(String category) {
     return AUCHAN_CATALOG_LINK_PREFIX + category + "/";
   }
 
   @SneakyThrows
-  @NonNull
-  private Elements parsePage(@NonNull String url) {
+  private Elements parsePage(String url) {
     Document result = Jsoup.parse(new URL(url), PARSING_TIMEOUT_MS);
     return result.body().getAllElements();
   }
 
-  @NonNull
-  private String createCategorySelectQuery(@NonNull String category) {
+
+  private String createCategorySelectQuery(String category) {
     return String.format(CATALOG_CATEGORY_LINKS_SELECT_QUERY_TEMPLATE, category);
   }
 
-  @NonNull
-  private List<String> getUrlsFromHrefs(@NonNull Elements hrefElements) {
+
+  private List<String> getUrlsFromHrefs(Elements hrefElements) {
     return hrefElements
         .stream()
         .map(elm -> elm.attributes().get(HREF_HTML_ATTR_KEY))
         .collect(Collectors.toList());
   }
 
-  @NonNull
-  private Set<CatalogLink> mapToCatalogLinks(@NonNull List<String> catalogLinkUrls) {
+
+  private Set<CatalogLink> mapToCatalogLinks(List<String> catalogLinkUrls) {
     LocalDateTime parsingTime = LocalDateTime.now();
     return catalogLinkUrls.stream()
         .map(url -> new CatalogLink(null, parsingTime, url))
         .collect(Collectors.toSet());
   }
 
-  private void saveLinks(@NonNull List<String> catalogLinkUrls) {
+  private void saveLinks(List<String> catalogLinkUrls) {
     log.debug("Started saving links");
     Set<CatalogLink> catalogLinks = mapToCatalogLinks(catalogLinkUrls);
     repository.saveAll(catalogLinks);
     log.debug("{} links was saved into DB", catalogLinks.size());
   }
 
-  public @NonNull Iterable<CatalogLink> getAllSavedCatalogLinks() {
+  public Iterable<CatalogLink> getAllSavedCatalogLinks() {
     return repository.findAll();
   }
 }
