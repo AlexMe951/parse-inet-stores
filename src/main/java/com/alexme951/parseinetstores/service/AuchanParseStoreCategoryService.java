@@ -59,11 +59,9 @@ public class AuchanParseStoreCategoryService {
     return result.body().getAllElements();
   }
 
-
   private String createCategorySelectQuery(String category) {
     return String.format(CATALOG_CATEGORY_LINKS_SELECT_QUERY_TEMPLATE, category);
   }
-
 
   private List<String> getUrlsFromHrefs(Elements hrefElements) {
     return hrefElements
@@ -71,7 +69,6 @@ public class AuchanParseStoreCategoryService {
         .map(elm -> elm.attributes().get(HREF_HTML_ATTR_KEY))
         .collect(Collectors.toList());
   }
-
 
   private Set<CatalogLink> mapToCatalogLinks(List<String> catalogLinkUrls) {
     LocalDateTime parsingTime = LocalDateTime.now();
