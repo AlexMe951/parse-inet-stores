@@ -6,7 +6,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-import com.alexme951.parseinetstores.ParseInetStoresApplication;
 import com.alexme951.parseinetstores.TestSpringConfiguration;
 import com.alexme951.parseinetstores.repository.CatalogLinkRepository;
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
