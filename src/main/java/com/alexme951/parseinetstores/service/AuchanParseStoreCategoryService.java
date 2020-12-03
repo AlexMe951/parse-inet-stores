@@ -78,16 +78,9 @@ public class AuchanParseStoreCategoryService {
     return repository.findAll();
   }
 
-  public @NonNull List<CatalogLink> findAllByLinkUrl(String linkUrl) {
+  public List<CatalogLink> getAllByLinkUrl(String linkUrl) {
     log.info("Ищем строку "+linkUrl);
-    List<CatalogLink> result = new ArrayList<CatalogLink>();
-    Iterable<CatalogLink> catalogLinks = getAllSavedCatalogLinks();
-    for(CatalogLink catalogLink : catalogLinks) {
-       if (catalogLink.getLinkUrl().toLowerCase().contains(linkUrl.toLowerCase())) {
-         result.add(catalogLink);
-       }
-    }
-    return result;
+    return repository.findAllByLinkUrl(linkUrl);
   }
 
 }
