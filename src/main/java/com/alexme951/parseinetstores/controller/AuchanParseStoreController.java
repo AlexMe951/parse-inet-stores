@@ -3,9 +3,7 @@ package com.alexme951.parseinetstores.controller;
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
 import com.alexme951.parseinetstores.service.AuchanParseStoreCategoryService;
 import com.alexme951.parseinetstores.service.ExtractProductLinksService;
-
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuchanParseStoreController {
 
   private final AuchanParseStoreCategoryService service;
-  private final ExtractProductLinksService service_product;
+  private final ExtractProductLinksService serviceProduct;
 
   @PostMapping("/parse/auchan/cataloglinks")
   public ResponseEntity<List<String>> getAllCatalogLinks() {
@@ -48,9 +46,9 @@ public class AuchanParseStoreController {
 
 
   @GetMapping("parse/auchan/product")
-  public ResponseEntity<Iterable<String>> getProducktLink() {
-    //List<String> result = service_product.getAllProductLinksFromCatalogCategoryUrls("catalog/sport-i-otdyh/sportivnoe-pitanie/sheykery/");
-    List<String> result = service_product.getAllProductLinksFromCatalogCategoryUrls("/catalog/hlebnaya-vypechka/");
+  public ResponseEntity<Iterable<String>> getProductLink() {
+//    List<String> result = serviceProduct.getAllProductLinksFromCatalogCategoryUrls("/catalog/sport-i-otdyh/sportivnoe-pitanie/sheykery");
+    List<String> result = serviceProduct.getAllProductLinksFromCatalogCategoryUrls("/catalog/hlebnaya-vypechka/");
     return ResponseEntity.ok().body(result);
   }
 }
