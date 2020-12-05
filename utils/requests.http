@@ -11,3 +11,6 @@ GET http://{{web-server}}/parse/auchan/cataloglinks
 #######
 
 GET http://{{web-server}}/parse/auchan/cataloglinks/sport-i-otdyh/
+#######
+
+GET http://{{web-server}}/parse/auchan/product/

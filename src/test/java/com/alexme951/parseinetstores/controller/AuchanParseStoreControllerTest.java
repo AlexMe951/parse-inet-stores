@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
 import com.alexme951.parseinetstores.service.AuchanParseStoreCategoryService;
+import com.alexme951.parseinetstores.service.ExtractProductLinksService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import java.time.LocalDateTime;
@@ -27,9 +28,12 @@ public class AuchanParseStoreControllerTest {
   @Mock
   private AuchanParseStoreCategoryService service;
 
+  @Mock
+  private ExtractProductLinksService service_product;
+
   @Before
   public void setUp() {
-    controller = new AuchanParseStoreController(service);
+    controller = new AuchanParseStoreController(service,service_product);
   }
 
   @Test
