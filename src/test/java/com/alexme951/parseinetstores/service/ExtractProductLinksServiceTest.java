@@ -1,13 +1,12 @@
 package com.alexme951.parseinetstores.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 import com.alexme951.parseinetstores.ParseInetStoresApplication;
-import com.alexme951.parseinetstores.ParseInetStoresApplicationTests;
 import com.alexme951.parseinetstores.TestSpringConfiguration;
-import com.alexme951.parseinetstores.repository.CatalogLinkRepository;
 import java.util.List;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
@@ -18,17 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import java.net.URL;
-
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {TestSpringConfiguration.class, ParseInetStoresApplicationTests.class})
+@SpringBootTest(classes = {
+    TestSpringConfiguration.class,
+    ParseInetStoresApplication.class})
 public class ExtractProductLinksServiceTest {
 
-  private JsoupFacadeService jsoup = new JsoupFacadeService();
+  @Autowired
+  private JsoupFacadeService jsoup;
 
-  private ExtractProductLinksService service_product = new ExtractProductLinksService(jsoup);
+  @Autowired
+  private ExtractProductLinksService service_product;
 
   @Test
   public void getAllProductLinksFromCatalogCategoryUrlsWithCategory() {
@@ -38,8 +39,8 @@ public class ExtractProductLinksServiceTest {
     elements.add(element);
 
     String urls = "https://www.auchan.ru/catalog/hlebnaya-vypechka/";
-    //when(jsoup.parsePage(eq(urls))).thenReturn(elements);
-    //when(jsoup.parsePage(eq("https://www.auchan.ru/catalog/hlebnaya-vypechka/"))).thenReturn(elements);
+    when(jsoup.parsePage(eq(urls))).thenReturn(elements);
+    when(jsoup.parsePage(eq("https://www.auchan.ru/catalog/hlebnaya-vypechka/"))).thenReturn(elements);
 
     List<String> result = service_product.getAllProductLinksFromCatalogCategoryUrls("/catalog/hlebnaya-vypechka/");
 

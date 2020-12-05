@@ -2,10 +2,12 @@ package com.alexme951.parseinetstores.repository;
 
 import com.alexme951.parseinetstores.repository.dto.CatalogLink;
 import java.util.List;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+@Profile("!test")
 @Repository
 public interface CatalogLinkRepository extends CrudRepository<CatalogLink, Long> {
 
