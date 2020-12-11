@@ -1,7 +1,7 @@
 package com.alexme951.parseinetstores;
 
-import com.alexme951.parseinetstores.repository.CatalogLinkRepository;
-import com.alexme951.parseinetstores.service.JsoupFacadeService;
+import com.alexme951.parseinetstores.repository.parsing.CategoryLinkRepository;
+import com.alexme951.parseinetstores.service.jsoup.impl.JsoupFacadeServiceImpl;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +14,13 @@ public class TestSpringConfiguration {
 
   @Bean
   @Primary
-  public CatalogLinkRepository getTestRepository() {
-    return Mockito.mock(CatalogLinkRepository.class);
+  public CategoryLinkRepository getTestRepository() {
+    return Mockito.mock(CategoryLinkRepository.class);
   }
 
   @Bean
   @Primary
-  public JsoupFacadeService getJsoupFacadeService() {
-    return Mockito.mock(JsoupFacadeService.class);
+  public JsoupFacadeServiceImpl getJsoupFacadeService() {
+    return Mockito.mock(JsoupFacadeServiceImpl.class);
   }
 }

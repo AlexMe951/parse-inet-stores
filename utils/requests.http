@@ -1,10 +1,18 @@
-#######
 POST http://{{web-server}}/parse/auchan/cataloglinks/
 Content-Type: text/html
-#######
+###
 
 POST http://{{web-server}}/parse/auchan/cataloglinks/sport-i-otdyh/
 Content-Type: text/html
-#######
+###
+
+POST http://{{web-server}}/parse/auchan/productlinks/sport-i-otdyh/
+Content-Type: text/html
+###
+
+POST http://{{web-server}}/parse/auchan/productlinks/
+Content-Type: text/html
+###
 
 GET http://{{web-server}}/parse/auchan/cataloglinks
+###
