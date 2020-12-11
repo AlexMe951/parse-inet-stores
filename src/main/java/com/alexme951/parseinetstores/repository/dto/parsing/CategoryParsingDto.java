@@ -1,5 +1,6 @@
 package com.alexme951.parseinetstores.repository.dto.parsing;
 
+import com.alexme951.parseinetstores.repository.dto.BasicDto;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "category")
-public class CategoryParsingDto extends BasicParsingDto {
+public class CategoryParsingDto extends BasicDto {
 
   @NotNull
   private String name;
@@ -22,6 +23,10 @@ public class CategoryParsingDto extends BasicParsingDto {
   @OneToOne
   private CategoryParsingDto parentCategory;
 
+  @OneToOne
+  @NotNull
+  private ParsingHistoryEntryDto parsingHistoryEntry;
+
   public CategoryParsingDto() {
     super();
   }
@@ -30,9 +35,18 @@ public class CategoryParsingDto extends BasicParsingDto {
       @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
       @NotNull String name, @NotNull String description,
       CategoryParsingDto parentCategory) {
-    super(id, parsingHistoryEntry);
+    super(id);
+    this.parsingHistoryEntry = parsingHistoryEntry;
     this.name = name;
     this.description = description;
     this.parentCategory = parentCategory;
+  }
+
+  public void setParsingHistoryEntry(ParsingHistoryEntryDto parsingHistoryEntry) {
+    this.parsingHistoryEntry = parsingHistoryEntry;
+  }
+
+  public ParsingHistoryEntryDto getParsingHistoryEntry() {
+    return this.parsingHistoryEntry;
   }
 }
