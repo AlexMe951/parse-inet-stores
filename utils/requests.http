@@ -1,18 +1,85 @@
-POST http://{{web-server}}/parse/auchan/cataloglinks/
+### Parse Store Controller ###
+### Product links and products ###
+POST http://{{web-server}}/auchan/parse/productlinks
 Content-Type: text/html
 ###
 
-POST http://{{web-server}}/parse/auchan/cataloglinks/sport-i-otdyh/
+POST http://{{web-server}}/auchan/parse/productlinks/sport-i-otdyh/
 Content-Type: text/html
 ###
 
-POST http://{{web-server}}/parse/auchan/productlinks/sport-i-otdyh/
+POST http://{{web-server}}/auchan/parse/products
 Content-Type: text/html
 ###
 
-POST http://{{web-server}}/parse/auchan/productlinks/
+POST http://{{web-server}}/auchan/parse/products/sport-i-otdyh/
 Content-Type: text/html
 ###
 
-GET http://{{web-server}}/parse/auchan/cataloglinks
+### Category links and Categories ###
+POST http://{{web-server}}/auchan/parse/categorylinks
+Content-Type: text/html
+###
+
+POST http://{{web-server}}/auchan/parse/categorylinks/sport-i-otdyh/
+Content-Type: text/html
+###
+
+POST http://{{web-server}}/auchan/parse/categories/
+Content-Type: text/html
+###
+
+POST http://{{web-server}}/auchan/parse/categories/sport-i-otdyh/
+Content-Type: text/html
+###
+
+### Read from DB Controller ###
+### Category links and categories ###
+GET http://{{web-server}}/readfromdb/categorylinks/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/categorylinks/sport-i-otdyh/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/categories/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/categories/sport-i-otdyh/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/category/sport-i-otdyh/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/category/1/
+Content-Type: text/html
+###
+
+### Product links and products ###
+GET http://{{web-server}}/readfromdb/productlinks/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/productlinks/sport-i-otdyh/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/products/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/products/sport-i-otdyh/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/product/bedro_beskostnoe_lotokohl/
+Content-Type: text/html
+###
+
+GET http://{{web-server}}/readfromdb/product/1/
+Content-Type: text/html
 ###

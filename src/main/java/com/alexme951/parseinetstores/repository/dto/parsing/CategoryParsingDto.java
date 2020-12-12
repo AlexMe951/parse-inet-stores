@@ -2,6 +2,7 @@ package com.alexme951.parseinetstores.repository.dto.parsing;
 
 import com.alexme951.parseinetstores.repository.dto.BasicDto;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -20,7 +21,7 @@ public class CategoryParsingDto extends BasicDto {
   @NotNull
   private String description;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   private CategoryParsingDto parentCategory;
 
   @OneToOne

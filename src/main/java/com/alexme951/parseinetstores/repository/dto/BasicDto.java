@@ -12,7 +12,6 @@ import lombok.Setter;
 @MappedSuperclass
 public class BasicDto {
 
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
