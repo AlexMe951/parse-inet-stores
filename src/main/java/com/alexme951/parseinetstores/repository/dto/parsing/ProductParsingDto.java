@@ -1,10 +1,8 @@
 package com.alexme951.parseinetstores.repository.dto.parsing;
 
-import com.alexme951.parseinetstores.repository.dto.BasicDto;
+import com.alexme951.parseinetstores.repository.dto.ParsingDto;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,37 +10,27 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "product")
-public class ProductParsingDto extends BasicDto {
+public class ProductParsingDto extends ParsingDto {
 
   private String name;
   private String description;
   private String code;
   private String attributes;
 
-  @OneToOne
-  @NotNull
-  private ParsingHistoryEntryDto parsingHistoryEntry;
-
   public ProductParsingDto() {
     super();
   }
 
   public ProductParsingDto(Long id,
-      @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
-      String name, String description, String code, String attributes) {
-    super(id);
-    this.parsingHistoryEntry = parsingHistoryEntry;
+      ParsingHistoryEntryDto parsingHistoryEntry,
+      String name,
+      String description,
+      String code,
+      String attributes) {
+    super(id, parsingHistoryEntry);
     this.name = name;
     this.description = description;
     this.code = code;
     this.attributes = attributes;
-  }
-
-  public void setParsingHistoryEntry(ParsingHistoryEntryDto parsingHistoryEntry) {
-    this.parsingHistoryEntry = parsingHistoryEntry;
-  }
-
-  public ParsingHistoryEntryDto getParsingHistoryEntry() {
-    return this.parsingHistoryEntry;
   }
 }
