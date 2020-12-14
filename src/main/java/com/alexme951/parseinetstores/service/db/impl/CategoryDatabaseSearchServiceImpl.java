@@ -18,7 +18,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public List<CategoryLinkParsingDto> readAllCategoryLinks() {
-    createFactoryCategoryLinkParsingDto();
+    createFactoryParsingDto(CategoryLinkParsingDto.class);
     List<CategoryLinkParsingDto> allCategoryLinksList = session
         .createQuery("SELECT '*' from CategoryLinkParsingDto").getResultList();
     session.getTransaction().commit();
@@ -29,7 +29,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public List<CategoryLinkParsingDto> readSubCategoryLinksByCategory(String category) {
-    createFactoryCategoryLinkParsingDto();
+    createFactoryParsingDto(CategoryLinkParsingDto.class);
     List<CategoryLinkParsingDto> allCategoryLinksList = session
         .createQuery("select '*' from CategoryLinkParsingDto where linkUrl like :category")
         .setParameter("category", "%" + category + "%").getResultList();
@@ -40,7 +40,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public List<CategoryParsingDto> readAllCategories() {
-    createFactoryCategoryParsingDto();
+    createFactoryParsingDto(CategoryParsingDto.class);
     List<CategoryParsingDto> allCategoriesList = session
         .createQuery("select distinct '*' from CategoryParsingDto").getResultList();
     session.getTransaction().commit();
@@ -50,7 +50,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public List<CategoryParsingDto> readSubCategoriesByCategory(String category) {
-    createFactoryCategoryParsingDto();
+    createFactoryParsingDto(CategoryParsingDto.class);
     List<CategoryParsingDto> allSubCategoriesByCategoryList = session
         .createQuery("select '*' from CategoryParsingDto where name like :category")
         .setParameter("category", "%" + category + "%").getResultList();
@@ -62,7 +62,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public CategoryParsingDto readCategoryByName(String categoryName) {
-    createFactoryCategoryParsingDto();
+    createFactoryParsingDto(CategoryParsingDto.class);
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
         .createQuery("select distinct '*' from CategoryParsingDto where name = :categoryName")
         .setParameter("categoryName", "%" + categoryName + "%" ).getSingleResult();
@@ -73,7 +73,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
 
   @Override
   public CategoryParsingDto readCategoryById(Long categoryId) {
-    createFactoryCategoryParsingDto();
+    createFactoryParsingDto(CategoryParsingDto.class);
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
         .createQuery("select distinct '*' from CategoryParsingDto where id = :categoryId")
         .setParameter("categoryId", categoryId).getSingleResult();
@@ -82,19 +82,11 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     return categoryParsingDtoByName;
   }
 
-  public void createFactoryCategoryLinkParsingDto(){
-    factory = new Configuration()
-        .configure("hibernate.properties")
-        .addAnnotatedClass(CategoryLinkParsingDto.class)
-        .buildSessionFactory();
-    session = factory.getCurrentSession();
-    session.beginTransaction();
-  }
 
-  public void createFactoryCategoryParsingDto(){
+  public void createFactoryParsingDto(Class clazz){
     factory = new Configuration()
         .configure("hibernate.properties")
-        .addAnnotatedClass(CategoryParsingDto.class)
+        .addAnnotatedClass(clazz)
         .buildSessionFactory();
     session = factory.getCurrentSession();
     session.beginTransaction();
