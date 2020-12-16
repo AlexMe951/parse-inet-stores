@@ -1,10 +1,8 @@
 package com.alexme951.parseinetstores.controller;
 
-import com.alexme951.parseinetstores.service.dto.Category;
 import com.alexme951.parseinetstores.service.dto.CategoryLink;
 import com.alexme951.parseinetstores.service.dto.Product;
 import com.alexme951.parseinetstores.service.dto.ProductLink;
-import com.alexme951.parseinetstores.service.parsing.ParseCategoriesService;
 import com.alexme951.parseinetstores.service.parsing.ParseCategoryLinksService;
 import com.alexme951.parseinetstores.service.parsing.ParseProductLinksService;
 import com.alexme951.parseinetstores.service.parsing.ParseProductsService;
@@ -24,7 +22,6 @@ public class AuchanParseStoreController {
   private final ParseProductLinksService parseProductLinksService;
   private final ParseProductsService parseProductsService;
   private final ParseCategoryLinksService parseCategoryLinksService;
-  private final ParseCategoriesService parseCategoriesService;
 
   @PostMapping("/parse/productlinks")
   public ResponseEntity<List<ProductLink>> parseAllProductLinks(){
@@ -60,18 +57,6 @@ public class AuchanParseStoreController {
   public ResponseEntity<List<CategoryLink>> parseSubCategoryLinksByCategory(
       @PathVariable("category") String category){
     List<CategoryLink> result = parseCategoryLinksService.parseSubCategoryLinks(category);
-    return ResponseEntity.ok().body(result);
-  }
-
-  @PostMapping("/parse/categories")
-  public ResponseEntity<List<Category>> parseAllCategories(){
-    List<Category> result = parseCategoriesService.parseAllCategories();
-    return ResponseEntity.ok().body(result);
-  }
-
-  @PostMapping("/parse/categories/{category}")
-  public ResponseEntity<List<Category>> parseSubcategoriesByCategory(@PathVariable String category){
-    List<Category> result = parseCategoriesService.parseSubCategoriesByCategory(category);
     return ResponseEntity.ok().body(result);
   }
 }

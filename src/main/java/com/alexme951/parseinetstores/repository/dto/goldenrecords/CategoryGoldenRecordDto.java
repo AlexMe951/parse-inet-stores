@@ -22,9 +22,7 @@ public class CategoryGoldenRecordDto extends BasicDto {
     super();
   }
 
-  public CategoryGoldenRecordDto(Long id, String name,
-      CategoryGoldenRecordDto parentCategory) {
-    super(id);
+  public CategoryGoldenRecordDto(String name, CategoryGoldenRecordDto parentCategory) {
     this.name = name;
     this.parentCategory = parentCategory;
   }

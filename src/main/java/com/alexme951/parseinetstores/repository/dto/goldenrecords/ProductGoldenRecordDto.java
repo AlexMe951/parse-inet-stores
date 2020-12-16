@@ -24,10 +24,10 @@ public class ProductGoldenRecordDto extends BasicDto {
     super();
   }
 
-  public ProductGoldenRecordDto(Long id, String name, String description,
+  public ProductGoldenRecordDto(String name,
+      String description,
       CategoryGoldenRecordDto parentCategory,
       BrandDto brand) {
-    super(id);
     this.name = name;
     this.description = description;
     this.parentCategory = parentCategory;

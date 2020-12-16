@@ -24,10 +24,8 @@ public class ProductToGoldenRecordLinkDto extends BasicDto {
     super();
   }
 
-  public ProductToGoldenRecordLinkDto(Long id,
-      ProductParsingDto parsedProduct,
+  public ProductToGoldenRecordLinkDto(ProductParsingDto parsedProduct,
       ProductGoldenRecordDto goldenRecord) {
-    super(id);
     this.parsedProduct = parsedProduct;
     this.goldenRecord = goldenRecord;
   }

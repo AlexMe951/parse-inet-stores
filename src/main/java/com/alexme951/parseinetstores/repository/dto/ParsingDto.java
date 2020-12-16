@@ -16,12 +16,9 @@ public class ParsingDto extends BasicDto {
   @NotNull
   private ParsingHistoryEntryDto parsingHistoryEntry;
 
-  public ParsingDto() {
-    super();
-  }
-
-  public ParsingDto(Long id, ParsingHistoryEntryDto parsingHistoryEntry) {
-    super(id);
+  public ParsingDto(ParsingHistoryEntryDto parsingHistoryEntry) {
     this.parsingHistoryEntry = parsingHistoryEntry;
   }
+
+  public ParsingDto() { super();}
 }

@@ -15,7 +15,7 @@ public class ProductDatabaseSearchServiceImpl implements ProductDatabaseSearchSe
   }
 
   @Override
-  public List<ProductLinkParsingDto> readSubProductLinksByProduct(String category) {
+  public List<ProductLinkParsingDto> readProductLinksByCategory(String category) {
     return null;
   }
 

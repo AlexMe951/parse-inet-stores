@@ -1,7 +1,6 @@
 package com.alexme951.parseinetstores.service.db.impl;
 
 import com.alexme951.parseinetstores.repository.dto.parsing.CategoryLinkParsingDto;
-import com.alexme951.parseinetstores.repository.dto.parsing.CategoryParsingDto;
 import com.alexme951.parseinetstores.service.db.CategoryDatabaseSearchService;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -20,22 +19,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
   }
 
   @Override
-  public List<CategoryParsingDto> readAllCategories() {
-    return null;
-  }
-
-  @Override
-  public List<CategoryParsingDto> readSubCategoriesByCategory(String category) {
-    return null;
-  }
-
-  @Override
-  public CategoryParsingDto readCategoryByName(String categoryName) {
-    return null;
-  }
-
-  @Override
-  public CategoryParsingDto readCategoryById(Long categoryId) {
+  public List<CategoryLinkParsingDto> readCategoryLinkById(Long id) {
     return null;
   }
 }

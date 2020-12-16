@@ -17,13 +17,11 @@ public class ParsingHistoryEntryDto extends BasicDto {
   @NotNull
   private OffsetDateTime parsingTime;
 
-  public ParsingHistoryEntryDto() {
-    super();
+  public ParsingHistoryEntryDto(@NotNull OffsetDateTime parsingTime) {
+    this.parsingTime = parsingTime;
   }
 
-  public ParsingHistoryEntryDto(Long id,
-      @NotNull OffsetDateTime parsingTime) {
-    super(id);
-    this.parsingTime = parsingTime;
+  public ParsingHistoryEntryDto() {
+    super();
   }
 }

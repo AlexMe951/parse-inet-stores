@@ -8,7 +8,7 @@ public interface ProductDatabaseSearchService {
 
   List<ProductLinkParsingDto> readAllProductLinks();
 
-  List<ProductLinkParsingDto> readSubProductLinksByProduct(String category);
+  List<ProductLinkParsingDto> readProductLinksByCategory(String category);
 
   List<ProductParsingDto> readAllProducts();
 

@@ -18,28 +18,19 @@ public class CategoryLinkParsingDto extends ParsingDto {
   @NotNull
   private String linkUrl;
 
-  @NotNull
-  private String urlPostfix;
-
-  @OneToOne
-  CategoryParsingDto category;
-
   @OneToOne(fetch = FetchType.LAZY)
   private CategoryLinkParsingDto parentCategoryLink;
 
-  public CategoryLinkParsingDto() {
-    super();
+  public CategoryLinkParsingDto(
+      @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
+      @NotNull String linkUrl,
+      CategoryLinkParsingDto parentCategoryLink) {
+    super(parsingHistoryEntry);
+    this.linkUrl = linkUrl;
+    this.parentCategoryLink = parentCategoryLink;
   }
 
-  public CategoryLinkParsingDto(Long id,
-      @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
-      @NotNull String linkUrl, @NotNull String urlPostfix,
-      CategoryParsingDto category,
-      CategoryLinkParsingDto parentCategoryLink) {
-    super(id, parsingHistoryEntry);
-    this.linkUrl = linkUrl;
-    this.urlPostfix = urlPostfix;
-    this.category = category;
-    this.parentCategoryLink = parentCategoryLink;
+  public CategoryLinkParsingDto() {
+    super();
   }
 }

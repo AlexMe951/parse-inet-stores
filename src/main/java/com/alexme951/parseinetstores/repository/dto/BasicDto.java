@@ -16,13 +16,6 @@ public class BasicDto {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  public BasicDto() {
-  }
-
-  public BasicDto(Long id) {
-    this.id = id;
-  }
-
   @Override
   public int hashCode() {
     return 1;
@@ -39,7 +32,7 @@ public class BasicDto {
     if (this.id == null || ((BasicDto) obj).id == null) {
       return false;
     }
-    return this.id.equals(((BasicDto) obj).id);
+    return this == obj || this.id.equals(((BasicDto) obj).id);
   }
 }
 

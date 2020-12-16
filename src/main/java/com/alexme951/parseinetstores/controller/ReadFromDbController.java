@@ -1,7 +1,6 @@
 package com.alexme951.parseinetstores.controller;
 
 import com.alexme951.parseinetstores.repository.dto.parsing.CategoryLinkParsingDto;
-import com.alexme951.parseinetstores.repository.dto.parsing.CategoryParsingDto;
 import com.alexme951.parseinetstores.repository.dto.parsing.ProductLinkParsingDto;
 import com.alexme951.parseinetstores.repository.dto.parsing.ProductParsingDto;
 import com.alexme951.parseinetstores.service.db.CategoryDatabaseSearchService;
@@ -33,30 +32,6 @@ public class ReadFromDbController {
     List<CategoryLinkParsingDto> result = categoryDatabaseSearchService.readSubCategoryLinksByCategory(category);
     return ResponseEntity.ok().body(result);
   }
-  
-  @GetMapping("/categories/")
-  public ResponseEntity<List<CategoryParsingDto>> readAllCategories(){
-    List<CategoryParsingDto> result = categoryDatabaseSearchService.readAllCategories();
-    return ResponseEntity.ok().body(result);
-  }
-
-  @GetMapping("/categories/{category}")
-  public ResponseEntity<List<CategoryParsingDto>> readSubCategoriesByCategory(@PathVariable String category){
-    List<CategoryParsingDto> result = categoryDatabaseSearchService.readSubCategoriesByCategory(category);
-    return ResponseEntity.ok().body(result);
-  }
-  
-  @GetMapping("/category/{categoryName}")
-  public ResponseEntity<CategoryParsingDto> readCategoryByName(@PathVariable String categoryName){
-    CategoryParsingDto result = categoryDatabaseSearchService.readCategoryByName(categoryName);
-    return ResponseEntity.ok().body(result);
-  }
-  
-  @GetMapping("/category/{categoryId}")
-  public ResponseEntity<CategoryParsingDto> readCategoryById(@PathVariable Long categoryId){
-    CategoryParsingDto result = categoryDatabaseSearchService.readCategoryById(categoryId);
-    return ResponseEntity.ok().body(result);
-  }
 
   @GetMapping("/productlinks/")
   public ResponseEntity<List<ProductLinkParsingDto>> readAllProductLinks(){
@@ -66,7 +41,7 @@ public class ReadFromDbController {
 
   @GetMapping("/productlinks/category")
   public ResponseEntity<List<ProductLinkParsingDto>> readProductLinksByProduct(@PathVariable String category){
-    List<ProductLinkParsingDto> result = productDatabaseSearchService.readSubProductLinksByProduct(category);
+    List<ProductLinkParsingDto> result = productDatabaseSearchService.readProductLinksByCategory(category);
     return ResponseEntity.ok().body(result);
   }
 

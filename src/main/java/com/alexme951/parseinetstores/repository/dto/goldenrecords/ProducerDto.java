@@ -17,8 +17,7 @@ public class ProducerDto extends BasicDto {
     super();
   }
 
-  public ProducerDto(Long id, String name) {
-    super(id);
+  public ProducerDto(String name) {
     this.name = name;
   }
 }

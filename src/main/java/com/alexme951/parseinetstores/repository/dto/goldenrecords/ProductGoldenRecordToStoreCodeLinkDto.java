@@ -21,10 +21,8 @@ public class ProductGoldenRecordToStoreCodeLinkDto extends BasicDto {
     super();
   }
 
-  public ProductGoldenRecordToStoreCodeLinkDto(Long id,
-      ProductGoldenRecordDto productGoldenRecord,
+  public ProductGoldenRecordToStoreCodeLinkDto(ProductGoldenRecordDto productGoldenRecord,
       CatalogCodeDto catalogCode) {
-    super(id);
     this.productGoldenRecord = productGoldenRecord;
     this.catalogCode = catalogCode;
   }

@@ -14,15 +14,14 @@ public class ProductLinkParsingDto extends ParsingDto {
 
   private String linkUrl;
 
-  public ProductLinkParsingDto() {
-    super();
+  public ProductLinkParsingDto(
+      ParsingHistoryEntryDto parsingHistoryEntry,
+      String linkUrl) {
+    super(parsingHistoryEntry);
+    this.linkUrl = linkUrl;
   }
 
-  public ProductLinkParsingDto(Long id,
-      ParsingHistoryEntryDto parsingHistoryEntry,
-      Long id1,
-      String linkUrl) {
-    super(id, parsingHistoryEntry);
-    this.linkUrl = linkUrl;
+  public ProductLinkParsingDto() {
+    super();
   }
 }

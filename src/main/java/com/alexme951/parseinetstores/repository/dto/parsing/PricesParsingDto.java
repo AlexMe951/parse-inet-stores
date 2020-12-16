@@ -30,11 +30,7 @@ public class PricesParsingDto extends ParsingDto {
 
   Double discount;
 
-  public PricesParsingDto() {
-    super();
-  }
-
-  public PricesParsingDto(Long id,
+  public PricesParsingDto(
       ParsingHistoryEntryDto parsingHistoryEntry,
       ProductParsingDto product,
       @NotNull Integer priceInKopeyka,
@@ -42,12 +38,16 @@ public class PricesParsingDto extends ParsingDto {
       Integer amount,
       Boolean isAction,
       Double discount) {
-    super(id, parsingHistoryEntry);
+    super(parsingHistoryEntry);
     this.product = product;
     this.priceInKopeyka = priceInKopeyka;
     this.unitType = unitType;
     this.amount = amount;
     this.isAction = isAction;
     this.discount = discount;
+  }
+
+  public PricesParsingDto() {
+    super();
   }
 }

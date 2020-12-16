@@ -27,10 +27,10 @@ public class BrandDto extends BasicDto {
     super();
   }
 
-  public BrandDto(Long id, String name,
-      ProducerDto producer, Boolean isPrivateMark,
+  public BrandDto(String name,
+      ProducerDto producer,
+      Boolean isPrivateMark,
       Seller privateMarkOwner) {
-    super(id);
     this.name = name;
     this.producer = producer;
     this.isPrivateMark = isPrivateMark;

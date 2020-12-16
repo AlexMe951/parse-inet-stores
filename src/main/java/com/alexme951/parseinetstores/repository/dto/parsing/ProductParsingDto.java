@@ -17,20 +17,20 @@ public class ProductParsingDto extends ParsingDto {
   private String code;
   private String attributes;
 
-  public ProductParsingDto() {
-    super();
-  }
-
-  public ProductParsingDto(Long id,
+  public ProductParsingDto(
       ParsingHistoryEntryDto parsingHistoryEntry,
       String name,
       String description,
       String code,
       String attributes) {
-    super(id, parsingHistoryEntry);
+    super(parsingHistoryEntry);
     this.name = name;
     this.description = description;
     this.code = code;
     this.attributes = attributes;
+  }
+
+  public ProductParsingDto() {
+    super();
   }
 }

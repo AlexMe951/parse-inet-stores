@@ -22,9 +22,7 @@ public class CatalogCodeDto extends BasicDto {
     super();
   }
 
-  public CatalogCodeDto(Long id,
-      @Valid Seller seller, String code) {
-    super(id);
+  public CatalogCodeDto(Seller seller, String code) {
     this.seller = seller;
     this.code = code;
   }
