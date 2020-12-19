@@ -1,5 +1,6 @@
 package com.alexme951.parseinetstores.controller;
 
+import com.alexme951.parseinetstores.bpp.TestAnnotation;
 import com.alexme951.parseinetstores.repository.dto.parsing.CategoryLinkParsingDto;
 import com.alexme951.parseinetstores.repository.dto.parsing.ProductLinkParsingDto;
 import com.alexme951.parseinetstores.repository.dto.parsing.ProductParsingDto;
@@ -8,14 +9,15 @@ import com.alexme951.parseinetstores.service.db.ProductDatabaseSearchService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/readfromdb/")
 @RequiredArgsConstructor
+@TestAnnotation("Non-default value")
 public class ReadFromDbController {
 
   private final CategoryDatabaseSearchService categoryDatabaseSearchService;
