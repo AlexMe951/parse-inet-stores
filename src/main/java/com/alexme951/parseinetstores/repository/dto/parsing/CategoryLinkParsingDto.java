@@ -1,6 +1,7 @@
 package com.alexme951.parseinetstores.repository.dto.parsing;
 
 import com.alexme951.parseinetstores.repository.dto.ParsingDto;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
@@ -18,8 +19,13 @@ public class CategoryLinkParsingDto extends ParsingDto {
   @NotNull
   private String linkUrl;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private CategoryLinkParsingDto parentCategoryLink;
+
+  public void setParentCategoryLink(
+      CategoryLinkParsingDto parentCategoryLink) {
+    this.parentCategoryLink = parentCategoryLink;
+  }
 
   public CategoryLinkParsingDto(
       @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
