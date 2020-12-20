@@ -22,8 +22,8 @@ public class CategoryLinkParsingDto extends ParsingDto {
   private CategoryLinkParsingDto parentCategoryLink;
 
   public CategoryLinkParsingDto(
-      @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
       @NotNull String linkUrl,
+      @NotNull ParsingHistoryEntryDto parsingHistoryEntry,
       CategoryLinkParsingDto parentCategoryLink) {
     super(parsingHistoryEntry);
     this.linkUrl = linkUrl;

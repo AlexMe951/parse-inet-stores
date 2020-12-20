@@ -1,5 +1,5 @@
 package com.alexme951.parseinetstores.service.dto;
 
-public class ProductLink {
+public final record ProductLink() {
 
 }
