@@ -12,83 +12,91 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearchService {
-  SessionFactory factory;
-  Session session;
+  private final SessionFactory factory = new Configuration()
+      .configure("hibernate.properties")
+      .addAnnotatedClass(CategoryLinkParsingDto.class)
+      .addAnnotatedClass(CategoryParsingDto.class)
+      .buildSessionFactory();;
+
 
 
   @Override
   public List<CategoryLinkParsingDto> readAllCategoryLinks() {
-    createFactoryParsingDto(CategoryLinkParsingDto.class);
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     List<CategoryLinkParsingDto> allCategoryLinksList = session
         .createQuery("SELECT '*' from CategoryLinkParsingDto").getResultList();
     session.getTransaction().commit();
-    factory.close();
     return allCategoryLinksList;
   }
 
 
   @Override
   public List<CategoryLinkParsingDto> readSubCategoryLinksByCategory(String category) {
-    createFactoryParsingDto(CategoryLinkParsingDto.class);
+    if(category == null || category.isBlank()){
+      throw new NullPointerException();
+    }
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     List<CategoryLinkParsingDto> allCategoryLinksList = session
         .createQuery("select '*' from CategoryLinkParsingDto where linkUrl like :category")
         .setParameter("category", "%" + category + "%").getResultList();
     session.getTransaction().commit();
-    factory.close();
     return allCategoryLinksList;
   }
 
   @Override
   public List<CategoryParsingDto> readAllCategories() {
-    createFactoryParsingDto(CategoryParsingDto.class);
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     List<CategoryParsingDto> allCategoriesList = session
         .createQuery("select distinct '*' from CategoryParsingDto").getResultList();
     session.getTransaction().commit();
-    factory.close();
     return allCategoriesList;
   }
 
   @Override
   public List<CategoryParsingDto> readSubCategoriesByCategory(String category) {
-    createFactoryParsingDto(CategoryParsingDto.class);
+    if(category == null || category.isBlank()){
+      throw new NullPointerException();
+    }
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     List<CategoryParsingDto> allSubCategoriesByCategoryList = session
         .createQuery("select '*' from CategoryParsingDto where name like :category")
         .setParameter("category", "%" + category + "%").getResultList();
     session.getTransaction().commit();
-    factory.close();
     return allSubCategoriesByCategoryList;
 
   }
 
   @Override
   public CategoryParsingDto readCategoryByName(String categoryName) {
-    createFactoryParsingDto(CategoryParsingDto.class);
+    if(categoryName == null || categoryName.isBlank()){
+      throw new NullPointerException();
+    }
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
         .createQuery("select distinct '*' from CategoryParsingDto where name = :categoryName")
         .setParameter("categoryName", "%" + categoryName + "%" ).getSingleResult();
     session.getTransaction().commit();
-    factory.close();
     return categoryParsingDtoByName;
   }
 
   @Override
   public CategoryParsingDto readCategoryById(Long categoryId) {
-    createFactoryParsingDto(CategoryParsingDto.class);
+    if(categoryId == null){
+      throw new NullPointerException();
+    }
+    Session session = factory.getCurrentSession();
+    session.beginTransaction();
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
         .createQuery("select distinct '*' from CategoryParsingDto where id = :categoryId")
         .setParameter("categoryId", categoryId).getSingleResult();
     session.getTransaction().commit();
-    factory.close();
     return categoryParsingDtoByName;
   }
 
 
-  public void createFactoryParsingDto(Class clazz){
-    factory = new Configuration()
-        .configure("hibernate.properties")
-        .addAnnotatedClass(clazz)
-        .buildSessionFactory();
-    session = factory.getCurrentSession();
-    session.beginTransaction();
-  }
 }
