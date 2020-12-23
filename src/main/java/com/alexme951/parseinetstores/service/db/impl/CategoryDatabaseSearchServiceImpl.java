@@ -16,7 +16,9 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
       .configure("hibernate.properties")
       .addAnnotatedClass(CategoryLinkParsingDto.class)
       .addAnnotatedClass(CategoryParsingDto.class)
-      .buildSessionFactory();;
+      .buildSessionFactory();
+
+  private final String SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO = "select '*' from CategoryParsingDto";
 
 
 
@@ -25,7 +27,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     List<CategoryLinkParsingDto> allCategoryLinksList = session
-        .createQuery("SELECT '*' from CategoryLinkParsingDto").getResultList();
+        .createQuery(SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO).getResultList();
     session.getTransaction().commit();
     return allCategoryLinksList;
   }
@@ -39,7 +41,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     List<CategoryLinkParsingDto> allCategoryLinksList = session
-        .createQuery("select '*' from CategoryLinkParsingDto where linkUrl like :category")
+        .createQuery( SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO + " where linkUrl like :category")
         .setParameter("category", "%" + category + "%").getResultList();
     session.getTransaction().commit();
     return allCategoryLinksList;
@@ -50,7 +52,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     List<CategoryParsingDto> allCategoriesList = session
-        .createQuery("select distinct '*' from CategoryParsingDto").getResultList();
+        .createQuery(SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO).getResultList();
     session.getTransaction().commit();
     return allCategoriesList;
   }
@@ -63,7 +65,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     List<CategoryParsingDto> allSubCategoriesByCategoryList = session
-        .createQuery("select '*' from CategoryParsingDto where name like :category")
+        .createQuery(  SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO + " where name like :category")
         .setParameter("category", "%" + category + "%").getResultList();
     session.getTransaction().commit();
     return allSubCategoriesByCategoryList;
@@ -78,7 +80,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
-        .createQuery("select distinct '*' from CategoryParsingDto where name = :categoryName")
+        .createQuery( SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO + " where name = :categoryName")
         .setParameter("categoryName", "%" + categoryName + "%" ).getSingleResult();
     session.getTransaction().commit();
     return categoryParsingDtoByName;
@@ -92,7 +94,7 @@ public class CategoryDatabaseSearchServiceImpl implements CategoryDatabaseSearch
     Session session = factory.getCurrentSession();
     session.beginTransaction();
     CategoryParsingDto categoryParsingDtoByName = (CategoryParsingDto) session
-        .createQuery("select distinct '*' from CategoryParsingDto where id = :categoryId")
+        .createQuery(  SELECT_ALL_FROM_CATEGORYLINKPARSINGDTO + " where id = :categoryId")
         .setParameter("categoryId", categoryId).getSingleResult();
     session.getTransaction().commit();
     return categoryParsingDtoByName;
