@@ -15,7 +15,7 @@ public class ProductParsingDto extends ParsingDto {
   private String name;
   private String description;
   private String code;
-  private String attributes;
+  private String attributes; // JSON formatted key-value pairs of attributes
 
   public ProductParsingDto(
       ParsingHistoryEntryDto parsingHistoryEntry,
