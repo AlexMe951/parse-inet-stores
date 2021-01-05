@@ -26,6 +26,5 @@ public class SaveCategoryLinkServiceImpl implements SaveCategoryLinkService {
 
   @Override
   public void saveCategoryLink(CategoryLink categoryLink, OffsetDateTime parsingTime) {
-
   }
 }
