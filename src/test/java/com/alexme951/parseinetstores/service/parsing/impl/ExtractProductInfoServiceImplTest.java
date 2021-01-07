@@ -1,28 +1,20 @@
 package com.alexme951.parseinetstores.service.parsing.impl;
 
-import static com.alexme951.parseinetstores.ProjectConstants.PARSING_TIMEOUT_MS;
 import static org.junit.Assert.assertEquals;
 
 import com.alexme951.parseinetstores.service.dto.Product;
 import com.alexme951.parseinetstores.service.dto.ProductLink;
 import com.alexme951.parseinetstores.service.jsoup.JsoupFacadeService;
-import java.net.URL;
 import java.util.Map;
-import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * Tests for {@link ExtractProductInfoServiceImpl}.
  * <p>
  */
-
 public class ExtractProductInfoServiceImplTest {
 
   private final JsoupFacadeService jsoupFacadeService = new JsoupFacadeService() {
