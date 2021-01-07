@@ -1,19 +1,76 @@
 package com.alexme951.parseinetstores.service.parsing.impl;
 
+import static com.alexme951.parseinetstores.ProjectConstants.PARSING_TIMEOUT_MS;
+import static org.junit.Assert.assertEquals;
+
+import com.alexme951.parseinetstores.service.dto.Product;
+import com.alexme951.parseinetstores.service.dto.ProductLink;
+import com.alexme951.parseinetstores.service.jsoup.JsoupFacadeService;
+import java.net.URL;
+import java.util.Map;
+import lombok.SneakyThrows;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * Tests for {@link ExtractProductInfoServiceImpl}.
  * <p>
- * Project: core
  */
-@RunWith(MockitoJUnitRunner.class)
+
 public class ExtractProductInfoServiceImplTest {
 
+  private final JsoupFacadeService jsoupFacadeService = new JsoupFacadeService() {
+    @Override
+    public Elements parsePage(String url) {
+      try {
+        Document result = Jsoup.parse(productPageHtmlExample);
+        return result.body().getAllElements();
+      } catch (Exception ex) {
+        return new Elements();
+      }
+    }
+  };
 
+  private final ExtractProductInfoServiceImpl extractProductInfoService = new ExtractProductInfoServiceImpl(
+      jsoupFacadeService);
 
-  private String productPageHtmlExample = """
+  @Test
+  public void extractInfo() {
+//    given
+    ProductLink productLink = new ProductLink();
+    Map<String, String> expectedAttributes = Map.of("Бренд", "Мираторг",
+        "Калорийность", "230",
+        "Белки на 100 г, г", "16",
+        "Жиры на 100 г, г", "18",
+        "Масса нетто, кг", "0.8",
+        "Масса брутто, кг", "0.8",
+        "Ингредиенты", "говядина",
+        "ДxШxВ, мм", "180x150x60",
+        "Производитель", "ООО «Брянская мясная компания»",
+        "Страна производства", "Россия");
+//    when
+    Product product = extractProductInfoService.extractInfo(productLink);
+//    then
+    assertEquals("Name is not correct", "Мякоть бедра «Мираторг» говяжьего Ангус, 800 г",
+        product.name());
+    assertEquals("Description is not correct",
+        "Бедро идеально подойдет для запекания, но чтобы сделать его по-настоящему нежным,"
+            + " готовить мясо нужно медленно. Тогда вы получите удивительно вкусное блюдо с хрустящей корочкой и глубоким ароматом.",
+        product.description());
+    assertEquals("Code is not correct", "159729", product.code());
+    assertEquals("Attributes size is not correct", expectedAttributes.size(),
+        product.attributes().size());
+    expectedAttributes.forEach((key, value) -> assertEquals("Attributes is not correct", value,
+        product.attributes().get(key)));
+  }
+
+  private final static String productPageHtmlExample = """
       <!DOCTYPE html>
       <!-- saved from url=(0075)https://www.auchan.ru/product/myakot-bedra-govyazhego-miratorg-angus-800-g/ -->
       <html lang="ru" dir="ltr" class="js-f<div class=" css-f3hshq">
@@ -651,4 +708,6 @@ public class ExtractProductInfoServiceImplTest {
               src="./Купить Мякоть бедра «Мираторг» говяжьего Ангус, 800 г по цене 626.49 руб в интернет-магазине Ашан в Москве и России_files/activityi.html"></iframe>
       </body></html>
       """;
+
+
 }
