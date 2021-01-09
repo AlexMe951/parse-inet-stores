@@ -5,8 +5,11 @@ import com.alexme951.parseinetstores.service.dto.Product;
 import com.alexme951.parseinetstores.service.dto.ProductLink;
 import com.alexme951.parseinetstores.service.jsoup.JsoupFacadeService;
 import com.alexme951.parseinetstores.service.parsing.ExtractProductInfoService;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 import org.springframework.stereotype.Service;
@@ -20,20 +23,28 @@ public class ExtractProductInfoServiceImpl implements ExtractProductInfoService 
   @Override
   public Product extractInfo(ProductLink productLink) {
 
+
+
+    Map<String, String> productAttributes = new HashMap<>();
     Document document = jsoup.parsePageToDocument(productLink.linkUrl());
     Elements el = document.getAllElements();
+
+    Elements elBodyTableTr = document.getElementsByTag("tr");
+
+    for (Element element : elBodyTableTr) {
+      Elements elTh = element.getElementsByTag("th");
+      Elements elTd = element.getElementsByTag("td");
+      productAttributes.put(elTh.get(0).ownText(),elTd.get(0).ownText());
+    }
+
+
     Elements elements = document.getElementsByAttributeValue("id","productName");
-    String str = elements.get(0).ownText();
+    String productName = elements.get(0).ownText();
 
+    String productDescription="";
+    String productCode = productAttributes.get("Артикул товара");
+    productAttributes.remove("Артикул товара");
 
-        //elements.attr(ProjectConstants.H1, ProjectConstants.H1_ID_NAME);
-
-//tag =h1
-//key = id
-//value = productName
-
-
-    //Elements producDescriptionH3 = elements.attr(ProjectConstants.H3);
-    return null;
+    return new Product(productName,productDescription,productCode,productAttributes);
   }
 }
