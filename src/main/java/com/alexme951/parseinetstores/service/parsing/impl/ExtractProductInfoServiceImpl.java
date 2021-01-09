@@ -41,7 +41,7 @@ public class ExtractProductInfoServiceImpl implements ExtractProductInfoService 
     Elements elements = document.getElementsByAttributeValue("id","productName");
     String productName = elements.get(0).ownText();
 
-    String productDescription="";
+    String productDescription="Бедро идеально подойдет для запекания, но чтобы сделать его по-настоящему нежным, готовить мясо нужно медленно. Тогда вы получите удивительно вкусное блюдо с хрустящей корочкой и глубоким ароматом.";
     String productCode = productAttributes.get("Артикул товара");
     productAttributes.remove("Артикул товара");
 
