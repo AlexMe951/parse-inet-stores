@@ -27,6 +27,11 @@ public class ExtractProductInfoServiceImplTest {
         return new Elements();
       }
     }
+
+    @Override
+    public Document parsePageToDocument(String url) {
+      return Jsoup.parse(productPageHtmlExample);
+    }
   };
 
   private final ExtractProductInfoServiceImpl extractProductInfoService = new ExtractProductInfoServiceImpl(
@@ -35,7 +40,7 @@ public class ExtractProductInfoServiceImplTest {
   @Test
   public void extractInfo() {
 //    given
-    ProductLink productLink = new ProductLink();
+    ProductLink productLink = new ProductLink("testLinkUrl");
     Map<String, String> expectedAttributes = Map.of("Бренд", "Мираторг",
         "Калорийность", "230",
         "Белки на 100 г, г", "16",

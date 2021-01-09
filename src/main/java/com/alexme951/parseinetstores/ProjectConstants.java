@@ -14,4 +14,9 @@ public class ProjectConstants {
   public static final String PRODUCT_LINKS_SELECT_QUERY = "[href^=/product/]";
   public static final String CATALOG_CATEGORY_LINKS_SELECT_QUERY_TEMPLATE = "[href^=/catalog/%s]";
 
+  public static final String H1_ID_NAME = "id=\"productName\"";
+  public static final String H1 = "h1";
+  public static final String H3 = "h3";
+
+
 }
