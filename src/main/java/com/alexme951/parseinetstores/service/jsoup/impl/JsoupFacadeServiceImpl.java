@@ -29,7 +29,8 @@ public class JsoupFacadeServiceImpl implements JsoupFacadeService {
   public Document parsePageToDocument(String url) {
     try {
       log.debug("Try to parse {}", url);
-      Document result = Jsoup.parse(new URL(url), PARSING_TIMEOUT_MS);
+      //Document result = Jsoup.parse(new URL(url), PARSING_TIMEOUT_MS);
+      Document result = Jsoup.connect(url.toLowerCase()).timeout(0).userAgent("Opera").get();
       log.debug("Parsed {} pages", url);
       return result;
     } catch (Exception ex) {
